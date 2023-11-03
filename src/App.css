@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.header{
+  background-color: #047BD5;
+  box-shadow: 5px 10px white;
+}
+
+.input-search{
+  width: 850px;
+  height: 35px;
+  background: white;
+
+}

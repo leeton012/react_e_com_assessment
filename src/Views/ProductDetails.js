@@ -20,9 +20,10 @@ const ProductDetails = () => {
     }
   }, [location]);
 
-  const addCartData = () => {
+  const addCartData = async () => {
+    const existingCartCheck = cartList.some((item) => item.id === productDetails.id);
     // if exists then update qty else add to cart as new data
-    if (cartList && cartList.includes((item) => item.id === productDetails.id)) {
+    if (existingCartCheck) {
       let newCartData = {
         id: productDetails.id,
         type: 'add',

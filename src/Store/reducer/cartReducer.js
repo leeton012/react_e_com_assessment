@@ -15,7 +15,12 @@ export const removeFromCart = createAsyncThunk('remove/cart', async (productId) 
   return productId;
 });
 
+export const clearCart = createAsyncThunk('clear/cart', async () => {
+  return [];
+});
+
 export const updateCart = createAsyncThunk('update/cart', async (updateItem) => {
+  console.log('coming here');
   return updateItem;
 });
 
@@ -30,6 +35,10 @@ export const cartSlice = createSlice({
     //if remove cart is fullfilled then remove using id
     builders.addCase(removeFromCart.fulfilled, (state, action) => {
       state.cartList = state.cartList.filter((item) => item.id !== action.payload);
+    });
+    // clear the cart
+    builders.addCase(clearCart.fulfilled, (state, action) => {
+      state.cartList = action.payload;
     });
     // if update cart then update the cart and add the questity
     builders.addCase(updateCart.fulfilled, (state, action) => {

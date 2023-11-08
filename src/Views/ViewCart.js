@@ -1,7 +1,7 @@
 import { Grid, List, ListItem, Typography, IconButton } from '@mui/material';
 import { Remove, Add } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeFromCart, updateCart } from '../Store/reducer/cartReducer';
+import { clearCart, removeFromCart, updateCart } from '../Store/reducer/cartReducer';
 import { useCallback, useMemo } from 'react';
 
 const ViewCart = () => {
@@ -20,9 +20,29 @@ const ViewCart = () => {
       dispatch(updateCart({ id: id, type: 'minus' }));
     }
   }, []);
+
+  const handleClearCart = useCallback(() => {
+    dispatch(clearCart());
+  }, []);
   return (
     <div>
-      <h1>Your Cart</h1>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <h1>Your Cart</h1>
+        <button
+          style={{
+            padding: '20px',
+            margin: '20px',
+            height: '4px',
+            color: 'white',
+            backgroundColor: 'black',
+            borderRadius: '5px',
+            textAlign: 'center',
+            cursor: 'pointer',
+          }}
+          onClick={() => handleClearCart()}>
+          Clear Cart
+        </button>
+      </div>
       <div>
         <List>
           {cartList &&

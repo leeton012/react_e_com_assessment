@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, TextField, InputAdornment, IconButton, Badge } from '@mui/material';
+import { TextField, InputAdornment, IconButton, Badge, AppBar, Grid } from '@mui/material';
 import logo from '../assets/images/new_e_logo.png';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
@@ -20,18 +20,16 @@ const Header = () => {
     }
   };
   return (
-    <div className='header'>
-      <Grid container spacing={1} alignItems={'center'}>
-        <Grid xs={2}>
-          <img
-            src={logo}
-            alt=''
-            width={150}
-            height={50}
-            style={{ marginTop: 11, marginLeft: 10 }}
-          />
+    <AppBar position='static'>
+      <Grid container direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+        <Grid item>
+          <IconButton
+            onClick={() => navigate('/')}
+            style={{ cursor: 'pointer', '&:hove': { borderColor: 'white' } }}>
+            <img src={logo} alt='' width={100} height={50} />
+          </IconButton>
         </Grid>
-        <Grid xs={8}>
+        <Grid item>
           <TextField
             placeholder='Search Here'
             onChange={(e) => setSraechText(e.target.value)}
@@ -53,8 +51,8 @@ const Header = () => {
             }}
           />
         </Grid>
-        <Grid xs={2}>
-          <IconButton onClick={() => navigate('/cart')} style={{ marginRight: 25, float: 'right' }}>
+        <Grid item>
+          <IconButton onClick={() => navigate('/cart')}>
             {cartList && cartList.length > 0 ? (
               <Badge badgeContent={cartList.length} color='primary'>
                 <ShoppingCartOutlinedIcon style={{ color: 'white', fontSize: 40 }} />
@@ -66,7 +64,7 @@ const Header = () => {
           </IconButton>
         </Grid>
       </Grid>
-    </div>
+    </AppBar>
   );
 };
 
